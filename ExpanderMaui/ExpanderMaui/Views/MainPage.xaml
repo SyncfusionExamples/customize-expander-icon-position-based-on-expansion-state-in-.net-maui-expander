@@ -1,0 +1,83 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:syncfusion="clr-namespace:Syncfusion.Maui.Expander;assembly=Syncfusion.Maui.Expander"
+              xmlns:local="clr-namespace:ExpanderMaui.Helper"
+             x:Class="ExpanderMaui.MainPage" >
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <OnPlatform x:TypeArguments="x:String" x:Key="ExpanderIcon">
+                <On Platform="Android" Value="ExpanderIcons.ttf#ExpanderIcons" />
+                <On Platform="WinUI" Value="ExpanderIcons.ttf#ExpanderIcons" />
+                <On Platform="iOS" Value="ExpanderIcons" />
+            </OnPlatform>
+        </ResourceDictionary>
+        <local:Converter x:Key="ExpanderIconConverter"/>
+        <local:ExpanderVisibilityConverter x:Key="ExpanderVisibilityConverter"/>
+    </ContentPage.Resources>
+    <ContentPage.Content>
+        <ScrollView BackgroundColor="#EDF2F5" Margin="{OnPlatform iOS='0,40,0,0'}">
+            <StackLayout>
+                <syncfusion:SfExpander x:Name="expander1" HeaderIconPosition="None">
+                    <syncfusion:SfExpander.Header>
+                        <Grid HeightRequest="50">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="50"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <Label HorizontalOptions="Center" VerticalOptions="Center"
+                                FontFamily="ExpanderIcons"
+                                IsVisible="{Binding Path=IsExpanded, Source={x:Reference expander1}, Converter={StaticResource ExpanderVisibilityConverter}, ConverterParameter=Header}" 
+                                Text="{Binding Path=IsExpanded,Source={x:Reference expander1}, Converter={StaticResource ExpanderIconConverter}, ConverterParameter={x:Static Device.RuntimePlatform}}"/>
+                            <Label Text="Veg Pizza" Grid.Column="1" TextColor="#495F6E"  VerticalTextAlignment="Center" />
+                        </Grid>
+                    </syncfusion:SfExpander.Header>
+                    <syncfusion:SfExpander.Content>
+                        <Grid BackgroundColor="#FFFFFF" >
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="50"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <Label HorizontalOptions="Center" VerticalOptions="Center"
+                                   FontFamily="ExpanderIcons" 
+                                   IsVisible="{Binding Path=IsExpanded,Source={x:Reference expander1}, Converter={StaticResource ExpanderVisibilityConverter}, ConverterParameter=Content}" 
+                                   Text="{Binding Path=IsExpanded,Source={x:Reference expander1}, Converter={StaticResource ExpanderIconConverter}, ConverterParameter={x:Static Device.RuntimePlatform}}"/>
+                            <Label BackgroundColor="#FFFFFF" HeightRequest="80" Grid.Column="1" Text="Veg pizza is prepared with the items that meet vegetarian standards by not including any meat or animal tissue products." TextColor="#303030" VerticalTextAlignment="Center"/>
+                        </Grid>
+                    </syncfusion:SfExpander.Content>
+                </syncfusion:SfExpander>
+
+                <syncfusion:SfExpander x:Name="expander2" HeaderIconPosition="None">
+                    <syncfusion:SfExpander.Header>
+                        <Grid HeightRequest="50">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="50"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <Label HorizontalOptions="Center" VerticalOptions="Center"
+                                   FontFamily="{StaticResource ExpanderIcon}"
+                                   IsVisible="{Binding Path=IsExpanded, Source={x:Reference expander2}, Converter={StaticResource ExpanderVisibilityConverter}, ConverterParameter=Header}" 
+                                   Text="{Binding Path=IsExpanded,Source={x:Reference expander2}, Converter={StaticResource ExpanderIconConverter}, ConverterParameter={x:Static Device.RuntimePlatform}}"/>
+                            <Label Text="Non-veg Pizza" Grid.Column="1" TextColor="#495F6E"  VerticalTextAlignment="Center" />
+                        </Grid>
+                    </syncfusion:SfExpander.Header>
+                    <syncfusion:SfExpander.Content>
+                        <Grid BackgroundColor="#FFFFFF" HeightRequest="80">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="50"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <Label HorizontalOptions="Center" VerticalOptions="Center"
+                                   FontFamily="{StaticResource ExpanderIcon}"
+                                   IsVisible="{Binding Path=IsExpanded, Source={x:Reference expander2}, Converter={StaticResource ExpanderVisibilityConverter}, ConverterParameter=Content}" 
+                                   Text="{Binding Path=IsExpanded,Source={x:Reference expander2}, Converter={StaticResource ExpanderIconConverter}, ConverterParameter={x:Static Device.RuntimePlatform}}"/>
+                            <Label Text="Non-veg pizza is prepared by including the meat and animal tissue products." Grid.Column="1" HeightRequest="50" TextColor="#303030" VerticalTextAlignment="Center"/>
+                        </Grid>
+                    </syncfusion:SfExpander.Content>
+                </syncfusion:SfExpander>
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+
+</ContentPage>

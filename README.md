@@ -9,7 +9,7 @@ Define converters for Expander.Header and Expander.Content to change the expande
 ```
 <ContentPage xmlns= "http://schemas.microsoft.com/dotnet/2021/maui”
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:local="clr-namespace:ExpanderXamarin"
+             xmlns:local="clr-namespace:ExpanderMaui"
              xmlns: syncfusion="clr-namespace:Syncfusion.Maui.Expander;assembly=Syncfusion.Maui.Expander"
              x:Class="ExpanderMaui.MainPage" Padding="{OnPlatform iOS='0,40,0,0'}">
     <ContentPage.Resources>
